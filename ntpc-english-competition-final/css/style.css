@@ -588,3 +588,186 @@
 @media(max-width:520px){
   .year-media-pair .photo-grid{padding-top:36px}
 }
+
+/* =========================================
+   114學年度得獎名單：競賽項目下拉展開
+   ========================================= */
+
+.winner-accordion {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.winner-accordion-item {
+  width: 100%;
+  border: 1px solid #dce5ef;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(23, 59, 99, 0.04);
+}
+
+.winner-accordion-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 19px 22px;
+  cursor: pointer;
+  color: #173b63;
+  background: #f1f6fb;
+  font-size: 17px;
+  font-weight: 800;
+  list-style: none;
+  transition: background .2s ease;
+}
+
+.winner-accordion-title:hover {
+  background: #e7f0fa;
+}
+
+.winner-accordion-title::-webkit-details-marker {
+  display: none;
+}
+
+.winner-accordion-title::before {
+  content: "+";
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  color: #287fc2;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.winner-accordion-item[open] .winner-accordion-title::before {
+  content: "−";
+}
+
+.winner-accordion-item[open] .winner-accordion-title {
+  background: #eaf3fc;
+  border-bottom: 1px solid #dce5ef;
+}
+
+.winner-accordion-title span:first-of-type {
+  flex: 1;
+}
+
+.winner-count {
+  flex: none;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #fff;
+  color: #60758b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.winner-table-wrap {
+  width: 100%;
+  padding: 14px;
+  overflow-x: auto;
+  background: #fff;
+}
+
+.winner-table-wrap table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+}
+
+.winner-table-wrap th {
+  padding: 13px 14px;
+  background: #edf3fa;
+  color: #506783;
+  font-size: 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.winner-table-wrap td {
+  padding: 13px 14px;
+  border-top: 1px solid #edf1f5;
+  color: #586b81;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.winner-table-wrap tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.winner-table-wrap tbody tr:hover {
+  background: #eef6ff;
+}
+
+.winner-accordion .empty {
+  padding: 35px 15px;
+  color: #71839a;
+  text-align: center;
+  line-height: 2;
+}
+
+@media (max-width: 700px) {
+  .winner-accordion {
+    gap: 10px;
+  }
+
+  .winner-accordion-title {
+    padding: 15px 13px;
+    gap: 8px;
+    font-size: 15px;
+  }
+
+  .winner-accordion-title::before {
+    flex-basis: 25px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .winner-count {
+    padding: 4px 9px;
+    font-size: 11px;
+  }
+
+  .winner-table-wrap {
+    padding: 8px;
+  }
+
+  .winner-table-wrap th,
+  .winner-table-wrap td {
+    padding: 11px 10px;
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   114學年度活動照片：圖片呈現
+   ========================================= */
+
+.year-media-pair .photo-grid .photo-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+}
+
+.year-media-pair .photo-grid .photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.year-media-pair .photo-grid .photo-card figcaption {
+  padding: 9px 10px;
+  color: #52647a;
+  font-size: 11px;
+}
