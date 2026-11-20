@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173b68">
+<meta name="description" content="新北市英語文競賽歷屆得獎名單查詢">
+<title>歷屆得獎名單｜新北市英語文競賽</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="header">
+ <a class="brand" href="../index.html"><span class="brand-icon">EN</span><span class="brand-name">新北市英語文競賽<small>NEW TAIPEI CITY ENGLISH COMPETITION</small></span></a>
+ <button class="nav-toggle" id="navToggle" aria-label="開啟導覽選單" aria-expanded="false">☰</button>
+ <nav class="nav" id="nav">
+  <a href="../index.html">首頁<small>Home</small></a>
+  <div class="nav-dropdown">
+   <button class="nav-drop-button" id="resultsMenu" aria-expanded="false">競賽成績 <small>Results ▾</small></button>
+   <div class="dropdown-panel">
+    <a href="../years/114/index.html">114學年度成果</a>
+    <a href="../archives/index.html">歷年成果總覽</a>
+    <a href="index.html">歷屆得獎名單</a>
+   </div>
+  </div>
+  <a href="../index.html#photos">活動照片<small>Photos</small></a>
+  <a href="../index.html#videos">活動影片<small>Videos</small></a>
+  <a href="../index.html#about">競賽資訊<small>About</small></a>
+ </nav>
+</header>
+<main class="section award-page">
+ <div class="section-heading">
+  <p class="eyebrow">AWARD WINNERS</p>
+  <h1>歷屆得獎名單 <span>Award Winners</span></h1>
+  <p>查詢各學年度英語文競賽得獎紀錄，輸入關鍵字或選擇條件，查詢各學年度競賽得獎紀錄。</p>
+ </div>
+ <div class="search-panel award-search-panel">
+  <label class="search-input"><span>⌕</span><input id="keyword" type="search" placeholder="輸入學校、學生姓名或關鍵字"></label>
+  <select id="filterYear"><option value="">所有年度</option></select>
+  <select id="filterCategory"><option value="">所有競賽項目</option></select>
+  <select id="filterDistrict"><option value="">所有分區</option></select>
+  <select id="filterLevel"><option value="">所有獎項</option></select>
+  <button class="button export-button" id="searchButton" type="button">查詢</button>
+ </div>
+ <div class="table-meta"><span id="resultMeta">得獎資料載入中</span><span>資料依各年度正式公告為準</span></div>
+ <div class="table-wrap award-table-wrap">
+  <table>
+   <thead><tr><th>學年度</th><th>競賽項目</th><th>分區</th><th>獎項</th><th>學校</th><th>得獎學生</th><th>指導老師</th></tr></thead>
+   <tbody id="winnerBody"><tr><td colspan="7" class="empty">得獎名單載入中</td></tr></tbody>
+  </table>
+ </div>
+ <p class="notice">目前已整合114學年度英語演說、作文、歌唱、戲劇及繪本競賽資料，共277筆。</p>
+ <p class="award-back"><a href="../index.html">← 返回首頁</a></p>
+</main>
+<footer class="footer"><div class="footer-inner"><div><strong>新北市英語文競賽成果專區</strong><small>NEW TAIPEI CITY ENGLISH COMPETITION</small></div><p>記錄學習成果・分享英語榮耀</p><small class="copyright">主辦單位及聯絡資訊請依正式資料補入｜本網站為成果展示平台</small></div></footer>
+<script src="../js/awards.js"></script>
+<script src="../js/nav.js"></script>
+</body>
+</html>

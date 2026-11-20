@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="新北市英語文競賽歷年成果專區">
+<meta name="theme-color" content="#173b68">
+<title>新北市英語文競賽成果專區｜English Competition</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="index.html"><span class="brand-icon">EN</span><span class="brand-name">新北市英語文競賽<small>NEW TAIPEI CITY ENGLISH COMPETITION</small></span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="開啟導覽選單" aria-expanded="false">☰</button>
+  <nav class="nav" id="nav">
+    <a href="index.html">首頁<small>Home</small></a>
+    <div class="nav-dropdown">
+      <button class="nav-drop-button" id="resultsMenu" aria-expanded="false">競賽成果 <small>Results ▾</small></button>
+      <div class="dropdown-panel">
+        <a href="years/114/index.html">114學年度成果</a>
+        <a href="years/115/index.html">115學年度競賽資訊</a>
+        <a href="archives/index.html">歷年成果總覽</a>
+        <a href="award-winners/index.html">跨年度得獎查詢</a>
+      </div>
+    </div>
+    <a href="index.html#photos">活動照片<small>Photos</small></a>
+    <a href="index.html#videos">活動影片<small>Videos</small></a>
+    <a href="index.html#about">競賽資訊<small>About</small></a>
+  </nav>
+</header>
+<main>
+<section class="hero">
+ <div class="hero-inner">
+  <div class="hero-copy">
+   <p class="eyebrow">NEW TAIPEI CITY · ENGLISH COMPETITION</p>
+   <h1>讓英語展現實力，<br><span>讓努力留下紀錄。</span></h1>
+   <p class="hero-en">English in Action. Achievements to Remember.</p>
+   <p class="hero-desc">典藏每一年的競賽成果，記錄學生自信表達、勇於挑戰的精彩時刻。</p>
+  </div>
+  <div class="hero-visual" aria-hidden="true"><div class="visual-panel"><span class="visual-kicker">YOUR VOICE</span><strong>ENGLISH<br><em>IN ACTION</em></strong><span class="visual-line"></span><span class="visual-foot">LEARN · SHARE · SHINE</span></div><span class="float-tag tag-one">SPEAK</span><span class="float-tag tag-two">READ</span><span class="float-tag tag-three">WRITE</span></div>
+ </div>
+</section>
+<section class="section" id="about">
+ <div class="section-heading"><p class="eyebrow">ABOUT THE COMPETITION</p><h2>競賽資訊 <span>About</span></h2><p>透過英語文競賽，鼓勵學生展現語言能力、溝通表達與創意思考，累積學習經驗與自信。</p></div>
+ <div class="category-grid plan-grid">
+  <a class="category-card category-speech-writing plan-link-card" href="competitions/speech-writing.html">
+   <span class="category-number">01</span><span class="category-symbol" aria-hidden="true">✦</span>
+   <h3>演說與作文</h3><p>Speech & Writing</p>
+   <span class="plan-hint">查看競賽資訊 <b>→</b></span>
+  </a>
+  <a class="category-card category-singing plan-link-card" href="competitions/singing.html">
+   <span class="category-number">02</span><span class="category-symbol" aria-hidden="true">♫</span>
+   <h3>歌唱</h3><p>Singing</p>
+   <span class="plan-hint">查看競賽資訊 <b>→</b></span>
+  </a>
+  <a class="category-card category-drama plan-link-card" href="competitions/drama.html">
+   <span class="category-number">03</span><span class="category-symbol" aria-hidden="true">✧</span>
+   <h3>戲劇</h3><p>Drama</p>
+   <span class="plan-hint">查看競賽資訊 <b>→</b></span>
+  </a>
+  <a class="category-card category-picturebook plan-link-card" href="competitions/picturebook.html">
+   <span class="category-number">04</span><span class="category-symbol" aria-hidden="true">▧</span>
+   <h3>繪本</h3><p>Picture Books</p>
+   <span class="plan-hint">查看競賽資訊 <b>→</b></span>
+  </a>
+ </div><p class="notice">※ 各學年度實際競賽項目及組別，請以當年度正式競賽計畫及簡章為準。</p>
+</section>
+<section class="results-band"><div class="results-inner"><div><p class="eyebrow light">COMPETITION RESULTS</p><h2>每一份努力，<br>都值得被看見。</h2><p>依學年度典藏競賽成果，並提供跨年度得獎紀錄查詢。</p></div><a class="button light-button" href="archives/index.html">瀏覽歷年成果 <span>→</span></a></div></section>
+<section class="media-duo" aria-label="活動照片與影片">
+ <section class="media-panel" id="photos">
+  <div class="section-heading"><p class="eyebrow">PHOTO GALLERY</p><h2>活動照片 <span>Photo Gallery</span></h2><p>依學年度瀏覽競賽現場與學生精彩表現。</p></div>
+  <div class="media-toolbar"><label>學年度 <select id="photoYear"><option value="114">114學年度</option><option value="115">115學年度</option></select></label><span id="photoCount">照片資料待整理</span></div>
+  <div class="photo-grid" id="photoGrid"></div>
+ </section>
+ <section class="media-panel" id="videos">
+  <div class="section-heading"><p class="eyebrow">VIDEO HIGHLIGHTS</p><h2>活動影片 <span>Video Highlights</span></h2><p>依學年度及競賽項目分類，點選清單即可播放。</p></div>
+  <div class="video-filters"><label>學年度 <select id="videoYear"><option value="114">114學年度</option><option value="115">115學年度</option></select></label><label>競賽項目 <select id="videoCategory"><option value="">所有項目</option></select></label></div>
+  <div class="video-layout"><div id="videoFeature"><div class="video-placeholder"><span>▶</span><b>活動影片整理中</b><small>加入 YouTube 影片網址後即可播放</small></div></div><div class="video-list" id="videoList"></div></div>
+ </section>
+</section>
+
+</main>
+<footer class="footer"><div class="footer-inner"><div><strong>新北市英語文競賽成果專區</strong><small>NEW TAIPEI CITY ENGLISH COMPETITION</small></div><p>記錄學習成果・分享英語榮耀</p><small class="copyright">主辦單位及聯絡資訊請依正式資料補入｜本網站為成果展示平台</small></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="js/main.js"></script>
+</body></html>
