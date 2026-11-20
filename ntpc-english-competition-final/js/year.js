@@ -228,10 +228,48 @@ function renderWinners() {
   });
 }
 
+let photoIndex = 0;
+let photoTimer = null;
+let photoTouchStartX = 0;
+
+function showPhoto(index) {
+  const grid = $("yearPhotoGrid");
+  if (!grid || !photos.length) return;
+
+  photoIndex = (index + photos.length) % photos.length;
+  const slides = [...grid.querySelectorAll(".photo-slide")];
+  slides.forEach((slide, i) => {
+    slide.hidden = i !== photoIndex;
+    slide.setAttribute("aria-hidden", i === photoIndex ? "false" : "true");
+  });
+
+  const counter = grid.querySelector(".photo-counter");
+  if (counter) counter.textContent = `${photoIndex + 1} / ${photos.length}`;
+
+  grid.querySelectorAll(".photo-dot").forEach((dot, i) => {
+    dot.classList.toggle("is-active", i === photoIndex);
+    dot.setAttribute("aria-current", i === photoIndex ? "true" : "false");
+  });
+}
+
+function stopPhotoAutoplay() {
+  if (photoTimer) {
+    clearInterval(photoTimer);
+    photoTimer = null;
+  }
+}
+
+function startPhotoAutoplay() {
+  stopPhotoAutoplay();
+  if (photos.length < 2) return;
+  photoTimer = setInterval(() => showPhoto(photoIndex + 1), 5000);
+}
+
 function renderPhotos() {
   const grid = $("yearPhotoGrid");
   if (!grid) return;
 
+  stopPhotoAutoplay();
   grid.replaceChildren();
 
   if (!photos.length) {
@@ -242,26 +280,123 @@ function renderPhotos() {
     return;
   }
 
-  photos.forEach(item => {
+  const carousel = document.createElement("div");
+  carousel.className = "photo-carousel";
+  carousel.setAttribute("aria-label", "114學年度活動照片走馬燈");
+
+  const viewport = document.createElement("div");
+  viewport.className = "photo-carousel-viewport";
+
+  photos.forEach((item, index) => {
     const figure = document.createElement("figure");
-    figure.className = "photo-card";
+    figure.className = "photo-slide";
+    figure.hidden = index !== 0;
 
     const image = document.createElement("img");
     image.src = new URL(item.src, siteRootUrl).href;
     image.alt = item.alt || item.caption || "活動照片";
-    image.loading = "lazy";
+    image.loading = index === 0 ? "eager" : "lazy";
 
     image.addEventListener("error", () => {
-      image.alt = "照片載入失敗";
       figure.classList.add("photo-error");
+      image.alt = "照片載入失敗";
     });
 
     const caption = document.createElement("figcaption");
     caption.textContent = item.caption || "";
 
     figure.append(image, caption);
-    grid.append(figure);
+    viewport.append(figure);
   });
+
+  const controls = document.createElement("div");
+  controls.className = "photo-carousel-controls";
+
+  const previous = document.createElement("button");
+  previous.type = "button";
+  previous.className = "photo-arrow";
+  previous.setAttribute("aria-label", "上一張照片");
+  previous.textContent = "‹";
+  previous.addEventListener("click", () => {
+    showPhoto(photoIndex - 1);
+    startPhotoAutoplay();
+  });
+
+  const counter = document.createElement("span");
+  counter.className = "photo-counter";
+  counter.setAttribute("aria-live", "polite");
+  counter.textContent = `1 / ${photos.length}`;
+
+  const pause = document.createElement("button");
+  pause.type = "button";
+  pause.className = "photo-pause";
+  pause.textContent = "暫停";
+  pause.setAttribute("aria-label", "暫停照片自動播放");
+  let paused = false;
+  pause.addEventListener("click", () => {
+    paused = !paused;
+    if (paused) {
+      stopPhotoAutoplay();
+      pause.textContent = "播放";
+      pause.setAttribute("aria-label", "繼續照片自動播放");
+    } else {
+      startPhotoAutoplay();
+      pause.textContent = "暫停";
+      pause.setAttribute("aria-label", "暫停照片自動播放");
+    }
+  });
+
+  const next = document.createElement("button");
+  next.type = "button";
+  next.className = "photo-arrow";
+  next.setAttribute("aria-label", "下一張照片");
+  next.textContent = "›";
+  next.addEventListener("click", () => {
+    showPhoto(photoIndex + 1);
+    startPhotoAutoplay();
+  });
+
+  controls.append(previous, counter, pause, next);
+
+  const dots = document.createElement("div");
+  dots.className = "photo-carousel-dots";
+  photos.forEach((item, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "photo-dot";
+    dot.setAttribute("aria-label", `查看第 ${index + 1} 張照片`);
+    dot.addEventListener("click", () => {
+      showPhoto(index);
+      startPhotoAutoplay();
+    });
+    dots.append(dot);
+  });
+
+  carousel.append(viewport, controls, dots);
+  grid.append(carousel);
+
+  carousel.addEventListener("mouseenter", stopPhotoAutoplay);
+  carousel.addEventListener("mouseleave", () => {
+    if (!paused) startPhotoAutoplay();
+  });
+  carousel.addEventListener("focusin", stopPhotoAutoplay);
+  carousel.addEventListener("focusout", event => {
+    if (!carousel.contains(event.relatedTarget) && !paused) startPhotoAutoplay();
+  });
+
+  viewport.addEventListener("touchstart", event => {
+    photoTouchStartX = event.changedTouches[0].clientX;
+  }, { passive: true });
+  viewport.addEventListener("touchend", event => {
+    const delta = event.changedTouches[0].clientX - photoTouchStartX;
+    if (Math.abs(delta) > 45) {
+      showPhoto(photoIndex + (delta < 0 ? 1 : -1));
+      if (!paused) startPhotoAutoplay();
+    }
+  }, { passive: true });
+
+  showPhoto(0);
+  startPhotoAutoplay();
 }
 
 function embed(url) {
